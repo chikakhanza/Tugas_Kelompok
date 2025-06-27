@@ -78,11 +78,12 @@
               </a>
 
               <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="layouts-without-menu.html" class="menu-link">
-                    <div data-i18n="Without menu">Kamar</div>
-                  </a>
-                </li>
+             <li class="menu-item">
+  <a href="{{ route('homestays.index') }}" class="menu-link">
+    <div data-i18n="Homestay">Homestay</div>
+  </a>
+</li>
+
                 <li class="menu-item">
                   <a href="layouts-without-navbar.html" class="menu-link">
                     <div data-i18n="Without navbar">Without navbar</div>

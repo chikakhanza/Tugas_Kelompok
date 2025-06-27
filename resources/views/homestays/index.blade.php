@@ -1,5 +1,4 @@
 @extends('layouts.main')
-
 @section('content')
 <div class="container">
     <h2>Data Homestay</h2>
