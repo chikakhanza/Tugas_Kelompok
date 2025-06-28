@@ -17,7 +17,9 @@ class HomestayController extends Controller
     // Form tambah homestay
     public function create()
     {
-        return view('homestays.create');
+        $users = \App\Models\User::all();
+        $homestays = \App\Models\Homestay::all();
+        return view('homestays.create', compact('users', 'homestays'));
     }
 
     // Simpan data baru

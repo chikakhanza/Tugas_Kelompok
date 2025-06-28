@@ -87,6 +87,10 @@
     <div data-i18n="Homestay">Homestay</div>
   </a>
 </li>
+  <a href="{{ route('bookings.index') }}" class="menu-link">
+    <div data-i18n="Homestay">Booking</div>
+  </a>
+</li>
       
 
                 <li class="menu-item">
