@@ -1,21 +1,39 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomestayController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\UserController;
 
-// Halaman Dashboard
+// ----------------------------
+// Halaman Dashboard Utama
+// ----------------------------
 Route::get('/', function () {
     return view('dashboard.dashboard');
 })->name('dashboard');
 
-// Halaman daftar Homestay (untuk menu)
-Route::get('/homestays', [HomestayController::class, 'index'])->name('homestays.index');
-
+// ============================
 // CRUD Homestay
+// ============================
 Route::prefix('homestays')->name('homestays.')->group(function () {
+    Route::get('/', [HomestayController::class, 'index'])->name('index');
     Route::get('/create', [HomestayController::class, 'create'])->name('create');
     Route::post('/', [HomestayController::class, 'store'])->name('store');
     Route::get('/{id}', [HomestayController::class, 'show'])->name('show');
     Route::get('/{id}/edit', [HomestayController::class, 'edit'])->name('edit');
     Route::put('/{id}', [HomestayController::class, 'update'])->name('update');
     Route::delete('/{id}', [HomestayController::class, 'destroy'])->name('destroy');
+});
+
+// ============================
+// CRUD User
+// ============================
+Route::prefix('users')->name('users.')->group(function () {
+    Route::get('/', [UserController::class, 'index'])->name('index');
+    Route::get('/create', [UserController::class, 'create'])->name('create');
+    Route::post('/', [UserController::class, 'store'])->name('store');
+    Route::get('/{user}', [UserController::class, 'show'])->name('show');
+    Route::get('/{user}/edit', [UserController::class, 'edit'])->name('edit');
+    Route::put('/{user}', [UserController::class, 'update'])->name('update');
+    Route::delete('/{user}', [UserController::class, 'destroy'])->name('destroy');
 });

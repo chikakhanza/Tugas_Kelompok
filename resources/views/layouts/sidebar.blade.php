@@ -79,10 +79,15 @@
 
               <ul class="menu-sub">
              <li class="menu-item">
+  <a href="{{ route('users.index') }}" class="menu-link">
+    <div data-i18n="User">User</div>
+  </a>
+</li>
   <a href="{{ route('homestays.index') }}" class="menu-link">
     <div data-i18n="Homestay">Homestay</div>
   </a>
 </li>
+      
 
                 <li class="menu-item">
                   <a href="layouts-without-navbar.html" class="menu-link">
