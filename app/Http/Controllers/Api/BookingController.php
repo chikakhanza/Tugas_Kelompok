@@ -4,53 +4,134 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use App\Models\Homestay;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class BookingController extends Controller
 {
     public function index()
     {
-        return Booking::with('user', 'homestay')->get();
+        $bookings = Booking::with(['user', 'homestay'])->get();
+
+        $data = $bookings->map(function ($booking) {
+            return [
+                'id' => $booking->id,
+                'user' => $booking->user,
+                'homestay' => $booking->homestay,
+                'check_in' => $booking->check_in,
+                'check_out' => $booking->check_out,
+                'jumlah_kamar' => $booking->jumlah_kamar,
+                'total_hari' => $booking->total_hari,
+                'keterlambatan' => $booking->keterlambatan,
+                'denda' => $booking->denda,
+                'total_bayar' => $booking->total_bayar,
+                'catatan' => $booking->catatan,
+                'created_at' => $booking->created_at,
+                'updated_at' => $booking->updated_at,
+            ];
+        });
+
+        return response()->json($data);
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'user_id' => 'required|exists:users,id',
             'homestay_id' => 'required|exists:homestays,id',
             'check_in' => 'required|date',
-            'check_out' => 'required|date|after_or_equal:check_in',
-            'status' => 'nullable|in:pending,confirmed,cancelled',
+            'check_out' => 'required|date|after:check_in',
+            'jumlah_kamar' => 'required|integer|min:1',
+            'keterlambatan' => 'nullable|integer|min:0',
+            'catatan' => 'nullable|string',
         ]);
 
-        // Cek ketersediaan homestay
-        $cek = Booking::where('homestay_id', $request->homestay_id)
-            ->where('status', 'confirmed')
-            ->where(function ($query) use ($request) {
-                $query->whereBetween('check_in', [$request->check_in, $request->check_out])
-                      ->orWhereBetween('check_out', [$request->check_in, $request->check_out]);
-            })->exists();
+        $homestay = Homestay::findOrFail($data['homestay_id']);
+        $checkIn = Carbon::parse($data['check_in']);
+        $checkOut = Carbon::parse($data['check_out']);
+        $totalHari = $checkIn->diffInDays($checkOut);
 
-        if ($cek) {
-            return response()->json(['message' => 'Homestay tidak tersedia.'], 409);
+        $totalBayar = $homestay->harga_sewa_per_hari * $totalHari * $data['jumlah_kamar'];
+
+        // Denda hanya dari keterlambatan
+        $keterlambatan = $data['keterlambatan'] ?? 0;
+        $denda = 0;
+        if ($keterlambatan > 0) {
+            $denda += round($totalBayar * 0.1 * $keterlambatan);
         }
 
-        $data = $request->all();
-        $data['status'] = $data['status'] ?? 'pending';
+        $data['total_hari'] = $totalHari;
+        $data['denda'] = $denda;
+        $data['total_bayar'] = $totalBayar + $denda;
 
         $booking = Booking::create($data);
 
-        return response()->json($booking, 201);
+        return response()->json($booking->load(['user', 'homestay']), 201);
     }
 
-    public function show(Booking $booking)
+    public function show($id)
     {
-        return $booking->load('user', 'homestay');
+        $booking = Booking::with(['user', 'homestay'])->findOrFail($id);
+
+        $data = [
+            'id' => $booking->id,
+            'user' => $booking->user,
+            'homestay' => $booking->homestay,
+            'check_in' => $booking->check_in,
+            'check_out' => $booking->check_out,
+            'jumlah_kamar' => $booking->jumlah_kamar,
+            'total_hari' => $booking->total_hari,
+            'keterlambatan' => $booking->keterlambatan,
+            'denda' => $booking->denda,
+            'total_bayar' => $booking->total_bayar,
+            'catatan' => $booking->catatan,
+            'created_at' => $booking->created_at,
+            'updated_at' => $booking->updated_at,
+        ];
+
+        return response()->json($data);
     }
 
-    public function destroy(Booking $booking)
+    public function update(Request $request, $id)
     {
-        $booking->delete();
-        return response()->json(null, 204);
+        $booking = Booking::findOrFail($id);
+
+        $data = $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'homestay_id' => 'required|exists:homestays,id',
+            'check_in' => 'required|date',
+            'check_out' => 'required|date|after:check_in',
+            'jumlah_kamar' => 'required|integer|min:1',
+            'keterlambatan' => 'nullable|integer|min:0',
+            'catatan' => 'nullable|string',
+        ]);
+
+        $homestay = Homestay::findOrFail($data['homestay_id']);
+        $checkIn = Carbon::parse($data['check_in']);
+        $checkOut = Carbon::parse($data['check_out']);
+        $totalHari = $checkIn->diffInDays($checkOut);
+
+        $totalBayar = $homestay->harga_sewa_per_hari * $totalHari * $data['jumlah_kamar'];
+
+        $keterlambatan = $data['keterlambatan'] ?? 0;
+        $denda = 0;
+        if ($keterlambatan > 0) {
+            $denda += round($totalBayar * 0.1 * $keterlambatan);
+        }
+
+        $data['total_hari'] = $totalHari;
+        $data['denda'] = $denda;
+        $data['total_bayar'] = $totalBayar + $denda;
+
+        $booking->update($data);
+
+        return response()->json($booking->load(['user', 'homestay']));
+    }
+
+    public function destroy($id)
+    {
+        Booking::destroy($id);
+        return response()->json(['message' => 'Booking deleted']);
     }
 }

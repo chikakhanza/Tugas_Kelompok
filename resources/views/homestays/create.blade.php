@@ -5,6 +5,6 @@
 <form action="{{ route('homestays.store') }}" method="POST">
     @csrf
     @include('homestays.form', ['homestay' => null])
-    <button class="btn btn-primary">Simpan</button>
+   
 </form>
 @endsection

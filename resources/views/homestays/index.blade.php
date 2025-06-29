@@ -21,6 +21,8 @@
                             <th>Kode</th>
                             <th>Tipe Kamar</th>
                             <th>Harga Sewa/Hari</th>
+                            <th>Fasilitas</th>
+                            <th>Jumlah Kamar</th>
                             <th>Lama Inap</th>
                             <th>Total Bayar</th>
                             <th class="text-center">Aksi</th>
@@ -33,6 +35,8 @@
                             <td>{{ $h->kode }}</td>
                             <td>{{ $h->tipe_kamar }}</td>
                             <td>Rp{{ number_format($h->harga_sewa_per_hari) }}</td>
+                            <td>{{ $h->fasilitas }}</td>
+                            <td>{{ $h->jumlah_kamar }}</td>
                             <td>{{ $h->lama_inap }}</td>
                             <td>Rp{{ number_format($h->total_bayar) }}</td>
                             <td class="text-center">
@@ -46,7 +50,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="7" class="text-center">Belum ada data homestay.</td>
+                            <td colspan="9" class="text-center">Belum ada data homestay.</td>
                         </tr>
                         @endforelse
                     </tbody>

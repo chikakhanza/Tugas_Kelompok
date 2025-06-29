@@ -19,17 +19,22 @@ class HomestayController extends Controller
             'kode' => 'required|unique:homestays',
             'tipe_kamar' => 'required',
             'harga_sewa_per_hari' => 'required|numeric',
-            'lama_inap' => 'required|integer',
+            'fasilitas' => 'nullable|string',
+            'jumlah_kamar' => 'required|integer|min:1',
+            'lama_inap' => 'required|integer|min:1',
         ]);
 
         $data['total_bayar'] = $data['harga_sewa_per_hari'] * $data['lama_inap'];
 
-        return Homestay::create($data);
+        $homestay = Homestay::create($data);
+
+        return response()->json($homestay, 201);
     }
 
     public function show($id)
     {
-        return Homestay::findOrFail($id);
+        $homestay = Homestay::findOrFail($id);
+        return response()->json($homestay);
     }
 
     public function update(Request $request, $id)
@@ -39,19 +44,21 @@ class HomestayController extends Controller
         $data = $request->validate([
             'tipe_kamar' => 'required',
             'harga_sewa_per_hari' => 'required|numeric',
-            'lama_inap' => 'required|integer',
+            'fasilitas' => 'nullable|string',
+            'jumlah_kamar' => 'required|integer|min:1',
+            'lama_inap' => 'required|integer|min:1',
         ]);
 
         $data['total_bayar'] = $data['harga_sewa_per_hari'] * $data['lama_inap'];
 
         $homestay->update($data);
 
-        return $homestay;
+        return response()->json($homestay);
     }
 
     public function destroy($id)
     {
         Homestay::destroy($id);
-        return response()->json(['message' => 'Data berhasil dihapus']);
+        return response()->json(['message' => 'Homestay deleted']);
     }
 }

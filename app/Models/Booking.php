@@ -2,19 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'user_id',
         'homestay_id',
         'check_in',
         'check_out',
+        'jumlah_kamar',
+        'total_hari',
+        'keterlambatan',
+        'denda',        // letakkan denda sebelum total_bayar jika ingin urutan sama dengan API
+        'total_bayar',
         'status',
+        'catatan',
     ];
 
     public function user()
