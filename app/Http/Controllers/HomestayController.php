@@ -7,28 +7,25 @@ use Illuminate\Http\Request;
 
 class HomestayController extends Controller
 {
-    // Tampilkan semua homestay
     public function index()
     {
         $homestays = Homestay::all();
         return view('homestays.index', compact('homestays'));
     }
 
-    // Form tambah homestay
     public function create()
     {
-        $users = \App\Models\User::all();
-        $homestays = \App\Models\Homestay::all();
-        return view('homestays.create', compact('users', 'homestays'));
+        return view('homestays.create');
     }
 
-    // Simpan data baru
     public function store(Request $request)
     {
         $request->validate([
             'kode' => 'required|unique:homestays',
             'tipe_kamar' => 'required',
             'harga_sewa_per_hari' => 'required|numeric',
+            'fasilitas' => 'nullable|string',
+            'jumlah_kamar' => 'required|integer|min:1',
             'lama_inap' => 'required|integer|min:1',
         ]);
 
@@ -38,6 +35,8 @@ class HomestayController extends Controller
             'kode' => $request->kode,
             'tipe_kamar' => $request->tipe_kamar,
             'harga_sewa_per_hari' => $request->harga_sewa_per_hari,
+            'fasilitas' => $request->fasilitas,
+            'jumlah_kamar' => $request->jumlah_kamar,
             'lama_inap' => $request->lama_inap,
             'total_bayar' => $total_bayar,
         ]);
@@ -45,21 +44,18 @@ class HomestayController extends Controller
         return redirect()->route('homestays.index')->with('success', 'Homestay berhasil ditambahkan.');
     }
 
-    // Tampilkan detail homestay
     public function show($id)
     {
         $homestay = Homestay::findOrFail($id);
         return view('homestays.show', compact('homestay'));
     }
 
-    // Form edit homestay
     public function edit($id)
     {
         $homestay = Homestay::findOrFail($id);
         return view('homestays.edit', compact('homestay'));
     }
 
-    // Simpan update data
     public function update(Request $request, $id)
     {
         $homestay = Homestay::findOrFail($id);
@@ -67,6 +63,8 @@ class HomestayController extends Controller
         $request->validate([
             'tipe_kamar' => 'required',
             'harga_sewa_per_hari' => 'required|numeric',
+            'fasilitas' => 'nullable|string',
+            'jumlah_kamar' => 'required|integer|min:1',
             'lama_inap' => 'required|integer|min:1',
         ]);
 
@@ -75,6 +73,8 @@ class HomestayController extends Controller
         $homestay->update([
             'tipe_kamar' => $request->tipe_kamar,
             'harga_sewa_per_hari' => $request->harga_sewa_per_hari,
+            'fasilitas' => $request->fasilitas,
+            'jumlah_kamar' => $request->jumlah_kamar,
             'lama_inap' => $request->lama_inap,
             'total_bayar' => $total_bayar,
         ]);
@@ -82,12 +82,9 @@ class HomestayController extends Controller
         return redirect()->route('homestays.index')->with('success', 'Homestay berhasil diperbarui.');
     }
 
-    // Hapus data homestay
     public function destroy($id)
     {
-        $homestay = Homestay::findOrFail($id);
-        $homestay->delete();
-
+        Homestay::destroy($id);
         return redirect()->route('homestays.index')->with('success', 'Homestay berhasil dihapus.');
     }
 }

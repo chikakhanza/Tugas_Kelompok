@@ -7,6 +7,8 @@
         <tr><th>Kode</th><td>{{ $homestay->kode }}</td></tr>
         <tr><th>Tipe Kamar</th><td>{{ $homestay->tipe_kamar }}</td></tr>
         <tr><th>Harga Sewa per Hari</th><td>Rp{{ number_format($homestay->harga_sewa_per_hari) }}</td></tr>
+        <tr><th>Fasilitas</th><td>{{ $homestay->fasilitas }}</td></tr>
+        <tr><th>Jumlah Kamar</th><td>{{ $homestay->jumlah_kamar }}</td></tr>
         <tr><th>Lama Inap</th><td>{{ $homestay->lama_inap }}</td></tr>
         <tr><th>Total Bayar</th><td>Rp{{ number_format($homestay->total_bayar) }}</td></tr>
     </table>

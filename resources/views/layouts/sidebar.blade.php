@@ -91,6 +91,10 @@
     <div data-i18n="Homestay">Booking</div>
   </a>
 </li>
+  <a href="{{ route('payments.index') }}" class="menu-link">
+    <div data-i18n="Homestay">Payment</div>
+  </a>
+</li>
       
 
                 <li class="menu-item">

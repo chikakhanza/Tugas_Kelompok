@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomestayController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PaymentController;
 
 // ----------------------------
 // Halaman Dashboard Utama
@@ -48,4 +49,16 @@ Route::prefix('bookings')->name('bookings.')->group(function () {
     Route::get('/{user}/edit', [BookingController::class, 'edit'])->name('edit');
     Route::put('/{user}', [BookingController::class, 'update'])->name('update');
     Route::delete('/{user}', [BookingController::class, 'destroy'])->name('destroy');
+});
+// ============================
+// CRUD Payment
+// ============================
+Route::prefix('payments')->name('payments.')->group(function () {
+    Route::get('/', [PaymentController::class, 'index'])->name('index');
+    Route::get('/create', [PaymentController::class, 'create'])->name('create');
+    Route::post('/', [PaymentController::class, 'store'])->name('store');
+    Route::get('/{user}', [PaymentController::class, 'show'])->name('show');
+    Route::get('/{user}/edit', [PaymentController::class, 'edit'])->name('edit');
+    Route::put('/{user}', [PaymentController::class, 'update'])->name('update');
+    Route::delete('/{user}', [PaymentController::class, 'destroy'])->name('destroy');
 });
