@@ -120,7 +120,7 @@
               </ul>
             </li>
 
-            <!-- Front Pages -->
+            {{-- <!-- Front Pages -->
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon icon-base ri ri-file-copy-line"></i>
@@ -169,10 +169,10 @@
                   </a>
                 </li>
               </ul>
-            </li>
+            </li> --}}
 
             <!-- Apps & Pages -->
-            <li class="menu-header mt-7">
+            {{-- <li class="menu-header mt-7">
               <span class="menu-header-text">Apps &amp; Pages</span>
             </li>
             <li class="menu-item">
@@ -289,8 +289,8 @@
                 <div data-i18n="Basic">Cards</div>
               </a>
             </li>
-            <!-- User interface -->
-            <li class="menu-item">
+            <!-- User interface --> --}}
+            {{-- <li class="menu-item">
               <a href="javascript:void(0)" class="menu-link menu-toggle">
                 <i class="menu-icon icon-base ri ri-toggle-line"></i>
                 <div data-i18n="User interface">User interface</div>
@@ -392,10 +392,10 @@
                   </a>
                 </li>
               </ul>
-            </li>
+            </li> --}}
 
             <!-- Extended components -->
-            <li class="menu-item">
+            {{-- <li class="menu-item">
               <a href="javascript:void(0)" class="menu-link menu-toggle">
                 <i class="menu-icon icon-base ri ri-box-3-line"></i>
                 <div data-i18n="Extended UI">Extended UI</div>
@@ -412,19 +412,18 @@
                   </a>
                 </li>
               </ul>
-            </li>
+            </li> --}}
 
             <!-- Icons -->
-            <li class="menu-item">
+            {{-- <li class="menu-item">
               <a href="icons-ri.html" class="menu-link">
                 <i class="menu-icon icon-base ri ri-remixicon-line"></i>
                 <div data-i18n="Icons">Icons</div>
               </a>
-            </li>
+            </li> --}}
 
             <!-- Forms & Tables -->
-            <li class="menu-header mt-7"><span class="menu-header-text">Forms &amp; Tables</span></li>
-            <!-- Forms -->
+            {{-- <li class="menu-header mt-7"><span class="menu-header-text">Forms &amp; Tables</span></li>
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon icon-base ri ri-radio-button-line"></i>
@@ -442,8 +441,8 @@
                   </a>
                 </li>
               </ul>
-            </li>
-            <li class="menu-item">
+            </li> --}}
+            {{-- <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon icon-base ri ri-box-3-line"></i>
                 <div data-i18n="Form Layouts">Form Layouts</div>
@@ -460,9 +459,9 @@
                   </a>
                 </li>
               </ul>
-            </li>
+            </li> --}}
             <!-- Form Validation -->
-            <li class="menu-item">
+            {{-- <li class="menu-item">
               <a
                 href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/form-validation.html"
                 target="_blank"
@@ -471,16 +470,16 @@
                 <div data-i18n="Form Validation">Form Validation</div>
                 <div class="badge rounded-pill bg-label-primary fs-tiny ms-auto">Pro</div>
               </a>
-            </li>
+            </li> --}}
             <!-- Tables -->
-            <li class="menu-item">
+            {{-- <li class="menu-item">
               <a href="tables-basic.html" class="menu-link">
                 <i class="menu-icon icon-base ri ri-table-alt-line"></i>
                 <div data-i18n="Tables">Tables</div>
               </a>
-            </li>
+            </li> --}}
             <!-- Data Tables -->
-            <li class="menu-item">
+            {{-- <li class="menu-item">
               <a
                 href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/vertical-menu-template/tables-datatables-basic.html"
                 target="_blank"
@@ -489,9 +488,9 @@
                 <div data-i18n="Datatables">Datatables</div>
                 <div class="badge rounded-pill bg-label-primary fs-tiny ms-auto">Pro</div>
               </a>
-            </li>
+            </li> --}}
             <!-- Misc -->
-            <li class="menu-header mt-7"><span class="menu-header-text">Misc</span></li>
+            {{-- <li class="menu-header mt-7"><span class="menu-header-text">Misc</span></li>
             <li class="menu-item">
               <a
                 href="https://github.com/themeselection/materio-bootstrap-html-admin-template-free/issues"
@@ -500,8 +499,8 @@
                 <i class="menu-icon icon-base ri ri-lifebuoy-line"></i>
                 <div data-i18n="Support">Support</div>
               </a>
-            </li>
-            <li class="menu-item">
+            </li> --}}
+            {{-- <li class="menu-item">
               <a
                 href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/documentation/"
                 target="_blank"
@@ -509,6 +508,6 @@
                 <i class="menu-icon icon-base ri ri-article-line"></i>
                 <div data-i18n="Documentation">Documentation</div>
               </a>
-            </li>
+            </li> --}}
           </ul>
         </aside>
