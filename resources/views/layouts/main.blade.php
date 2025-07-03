@@ -97,14 +97,14 @@
     </div>
     <!-- / Layout wrapper -->
 
-    <div class="buy-now">
+    {{-- <div class="buy-now">
       <a
         href="https://themeselection.com/item/materio-dashboard-pro-bootstrap/"
         target="_blank"
         class="btn btn-danger btn-buy-now"
         >Upgrade to Pro</a
       >
-    </div>
+    </div> --}}
 
     <!-- Core JS -->
 
