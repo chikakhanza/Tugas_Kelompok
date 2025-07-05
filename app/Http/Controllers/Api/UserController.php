@@ -9,24 +9,24 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    // Ambil semua user
+    // Menampilkan semua user
     public function index()
     {
         $users = User::all();
-        return response()->json(['data' => $users]);
+        return response()->json(['data' => $users], 200);
     }
 
-    // Ambil detail user berdasarkan ID
+    // Menampilkan detail user berdasarkan ID
     public function show($id)
     {
         $user = User::find($id);
         if (!$user) {
             return response()->json(['message' => 'User tidak ditemukan'], 404);
         }
-        return response()->json(['data' => $user]);
+        return response()->json(['data' => $user], 200);
     }
 
-    // Tambah user baru
+    // Menambahkan user baru
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -41,10 +41,13 @@ class UserController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        return response()->json(['data' => $user, 'message' => 'User berhasil dibuat'], 201);
+        return response()->json([
+            'message' => 'User berhasil dibuat',
+            'data' => $user
+        ], 201);
     }
 
-    // Update user
+    // Mengupdate data user berdasarkan ID
     public function update(Request $request, $id)
     {
         $user = User::find($id);
@@ -69,10 +72,13 @@ class UserController extends Controller
         }
         $user->save();
 
-        return response()->json(['data' => $user, 'message' => 'User berhasil diupdate']);
+        return response()->json([
+            'message' => 'User berhasil diupdate',
+            'data' => $user
+        ], 200);
     }
 
-    // Hapus user
+    // Menghapus user berdasarkan ID
     public function destroy($id)
     {
         $user = User::find($id);
@@ -80,6 +86,7 @@ class UserController extends Controller
             return response()->json(['message' => 'User tidak ditemukan'], 404);
         }
         $user->delete();
-        return response()->json(['message' => 'User berhasil dihapus']);
+
+        return response()->json(['message' => 'User berhasil dihapus'], 200);
     }
 }
