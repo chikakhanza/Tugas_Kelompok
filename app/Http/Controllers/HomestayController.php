@@ -87,4 +87,21 @@ class HomestayController extends Controller
         Homestay::destroy($id);
         return redirect()->route('homestays.index')->with('success', 'Homestay berhasil dihapus.');
     }
+
+    public function laporan(Request $request)
+{
+    $tipe_kamar = $request->input('tipe_kamar');
+
+    $query = Homestay::query();
+
+    if ($tipe_kamar) {
+        $query->where('tipe_kamar', $tipe_kamar);
+    }
+
+    $homestays = $query->get();
+    $tipeKamars = Homestay::select('tipe_kamar')->distinct()->pluck('tipe_kamar');
+
+    return view('homestays.laporan', compact('homestays', 'tipeKamars', 'tipe_kamar'));
+}
+
 }
