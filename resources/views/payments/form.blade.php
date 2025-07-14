@@ -12,6 +12,7 @@
             <option value="">-- Pilih Booking --</option>
             @foreach($bookings as $booking)
                 <option value="{{ $booking->id }}"
+                    data-total="{{ $booking->total_bayar }}"
                     {{ old('booking_id', $payment->booking_id ?? '') == $booking->id ? 'selected' : '' }}>
                     {{ optional($booking->user)->name ?? 'User Tidak Ditemukan' }} - Rp{{ number_format($booking->total_bayar, 0, ',', '.') }}
                 </option>
@@ -57,3 +58,23 @@
         </button>
     </div>
 </div>
+
+<!-- SCRIPT untuk otomatis jumlah dibayar -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const bookingSelect = document.getElementById('booking_id');
+        const jumlahDibayarInput = document.getElementById('jumlah_dibayar');
+
+        function setJumlahDibayar() {
+            const selectedOption = bookingSelect.options[bookingSelect.selectedIndex];
+            const total = selectedOption.getAttribute('data-total');
+            jumlahDibayarInput.value = total ? total : '';
+        }
+
+        // Saat pertama load (jika edit form)
+        setJumlahDibayar();
+
+        // Saat select berubah
+        bookingSelect.addEventListener('change', setJumlahDibayar);
+    });
+</script>
