@@ -13,6 +13,8 @@ Route::get('/', function () {
     return view('dashboard.dashboard');
 })->name('dashboard');
 
+
+Route::get('/homestays/laporan', [HomestayController::class, 'laporan'])->name('homestays.laporan');
 // ============================
 // CRUD Homestay
 // ============================

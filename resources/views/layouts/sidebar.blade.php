@@ -124,18 +124,15 @@
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon icon-base ri ri-file-copy-line"></i>
-                <div data-i18n="Front Pages">Front Pages</div>
+                <div data-i18n="Front Pages">Laporan</div>
                 <div class="badge rounded-pill bg-label-primary fs-tiny ms-auto">Pro</div>
               </a>
               <ul class="menu-sub">
-                <li class="menu-item">
-                  <a
-                    href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/front-pages/landing-page.html"
-                    class="menu-link"
-                    target="_blank">
-                    <div data-i18n="Landing">Landing</div>
-                  </a>
-                </li>
+               </li>
+  <a href="{{ route('homestays.laporan') }}" class="menu-link">
+    <div data-i18n="Homestay">Laporan Homestay</div>
+  </a>
+</li>
                 <li class="menu-item">
                   <a
                     href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/html/front-pages/pricing-page.html"
