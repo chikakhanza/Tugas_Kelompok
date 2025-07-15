@@ -94,6 +94,9 @@
   <a href="{{ route('payments.index') }}" class="menu-link">
     <div data-i18n="Payment">Payment</div>
   </a>
+  <a href="{{ route('homestays.laporan') }}" class="menu-link">
+    <div data-i18n="Laporan">Laporan</div>
+  </a>
 </li>
       
 
