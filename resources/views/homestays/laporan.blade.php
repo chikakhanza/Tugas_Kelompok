@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Laporan Homestay berdasarkan Tipe Kamar</h1>
+    <h1 class="mb-4">Laporan Homestay berdasarkan Tipe Kamar</h1>
 
     <form method="GET" action="{{ route('homestays.laporan') }}" class="mb-4">
         <div class="form-group">
@@ -20,32 +20,32 @@
     </form>
 
     @if($homestays->count())
-        <table class="table table-bordered">
-            <thead>
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
                 <tr>
+                    <th>No</th>
                     <th>Kode</th>
                     <th>Tipe Kamar</th>
                     <th>Harga Sewa/Hari</th>
                     <th>Jumlah Kamar</th>
-                    <th>Lama Inap</th>
-                    <th>Total Bayar</th>
+                    <th>Fasilitas</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($homestays as $item)
+                @foreach($homestays as $index => $item)
                 <tr>
+                    <td>{{ $index + 1 }}</td>
                     <td>{{ $item->kode }}</td>
                     <td>{{ $item->tipe_kamar }}</td>
                     <td>Rp{{ number_format($item->harga_sewa_per_hari, 0, ',', '.') }}</td>
                     <td>{{ $item->jumlah_kamar }}</td>
-                    <td>{{ $item->lama_inap }} hari</td>
-                    <td>Rp{{ number_format($item->total_bayar, 0, ',', '.') }}</td>
+                    <td>{{ $item->fasilitas }}</td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     @else
-        <p>Tidak ada data homestay untuk tipe kamar ini.</p>
+        <div class="alert alert-info">Tidak ada data homestay untuk tipe kamar ini.</div>
     @endif
 </div>
 @endsection

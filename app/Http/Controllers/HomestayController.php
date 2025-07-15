@@ -26,10 +26,7 @@ class HomestayController extends Controller
             'harga_sewa_per_hari' => 'required|numeric',
             'fasilitas' => 'nullable|string',
             'jumlah_kamar' => 'required|integer|min:1',
-            'lama_inap' => 'required|integer|min:1',
         ]);
-
-        $total_bayar = $request->harga_sewa_per_hari * $request->lama_inap;
 
         Homestay::create([
             'kode' => $request->kode,
@@ -37,8 +34,6 @@ class HomestayController extends Controller
             'harga_sewa_per_hari' => $request->harga_sewa_per_hari,
             'fasilitas' => $request->fasilitas,
             'jumlah_kamar' => $request->jumlah_kamar,
-            'lama_inap' => $request->lama_inap,
-            'total_bayar' => $total_bayar,
         ]);
 
         return redirect()->route('homestays.index')->with('success', 'Homestay berhasil ditambahkan.');
@@ -65,18 +60,13 @@ class HomestayController extends Controller
             'harga_sewa_per_hari' => 'required|numeric',
             'fasilitas' => 'nullable|string',
             'jumlah_kamar' => 'required|integer|min:1',
-            'lama_inap' => 'required|integer|min:1',
         ]);
-
-        $total_bayar = $request->harga_sewa_per_hari * $request->lama_inap;
 
         $homestay->update([
             'tipe_kamar' => $request->tipe_kamar,
             'harga_sewa_per_hari' => $request->harga_sewa_per_hari,
             'fasilitas' => $request->fasilitas,
             'jumlah_kamar' => $request->jumlah_kamar,
-            'lama_inap' => $request->lama_inap,
-            'total_bayar' => $total_bayar,
         ]);
 
         return redirect()->route('homestays.index')->with('success', 'Homestay berhasil diperbarui.');
@@ -89,19 +79,18 @@ class HomestayController extends Controller
     }
 
     public function laporan(Request $request)
-{
-    $tipe_kamar = $request->input('tipe_kamar');
+    {
+        $tipe_kamar = $request->input('tipe_kamar');
 
-    $query = Homestay::query();
+        $query = Homestay::query();
 
-    if ($tipe_kamar) {
-        $query->where('tipe_kamar', $tipe_kamar);
+        if ($tipe_kamar) {
+            $query->where('tipe_kamar', $tipe_kamar);
+        }
+
+        $homestays = $query->get();
+        $tipeKamars = Homestay::select('tipe_kamar')->distinct()->pluck('tipe_kamar');
+
+        return view('homestays.laporan', compact('homestays', 'tipeKamars', 'tipe_kamar'));
     }
-
-    $homestays = $query->get();
-    $tipeKamars = Homestay::select('tipe_kamar')->distinct()->pluck('tipe_kamar');
-
-    return view('homestays.laporan', compact('homestays', 'tipeKamars', 'tipe_kamar'));
-}
-
 }

@@ -12,7 +12,6 @@ class Homestay extends Model
         'harga_sewa_per_hari',
         'fasilitas',
         'jumlah_kamar',
-        'lama_inap',
-        'total_bayar',
+        
     ];
 }
