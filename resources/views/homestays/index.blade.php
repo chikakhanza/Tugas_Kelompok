@@ -4,8 +4,8 @@
 <div class="container py-4">
     <div class="card shadow">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h2 class="mb-0">Data Homestay</h2>
-            <a href="{{ route('homestays.create') }}" class="btn btn-primary">Tambah Homestay</a>
+            <h2 class="mb-0">Data Kamar</h2>
+            <a href="{{ route('homestays.create') }}" class="btn btn-primary">Tambah Kamar</a>
         </div>
 
         <div class="card-body">
@@ -23,8 +23,6 @@
                             <th>Harga Sewa/Hari</th>
                             <th>Fasilitas</th>
                             <th>Jumlah Kamar</th>
-                            <th>Lama Inap</th>
-                            <th>Total Bayar</th>
                             <th class="text-center">Aksi</th>
                         </tr>
                     </thead>
@@ -37,8 +35,6 @@
                             <td>Rp{{ number_format($h->harga_sewa_per_hari) }}</td>
                             <td>{{ $h->fasilitas }}</td>
                             <td>{{ $h->jumlah_kamar }}</td>
-                            <td>{{ $h->lama_inap }}</td>
-                            <td>Rp{{ number_format($h->total_bayar) }}</td>
                             <td class="text-center">
                                 <a href="{{ route('homestays.edit', $h->id) }}" class="btn btn-sm btn-warning">Edit</a>
                                 <form action="{{ route('homestays.destroy', $h->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin hapus?')">
@@ -50,7 +46,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="9" class="text-center">Belum ada data homestay.</td>
+                            <td colspan="7" class="text-center">Belum ada data kamar.</td>
                         </tr>
                         @endforelse
                     </tbody>

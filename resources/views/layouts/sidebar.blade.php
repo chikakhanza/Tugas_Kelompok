@@ -84,15 +84,15 @@
   </a>
 </li>
   <a href="{{ route('homestays.index') }}" class="menu-link">
-    <div data-i18n="Homestay">Homestay</div>
+    <div data-i18n="Kamar">Kamar</div>
   </a>
 </li>
   <a href="{{ route('bookings.index') }}" class="menu-link">
-    <div data-i18n="Homestay">Booking</div>
+    <div data-i18n="Booking">Booking</div>
   </a>
 </li>
   <a href="{{ route('payments.index') }}" class="menu-link">
-    <div data-i18n="Homestay">Payment</div>
+    <div data-i18n="Payment">Payment</div>
   </a>
 </li>
       
