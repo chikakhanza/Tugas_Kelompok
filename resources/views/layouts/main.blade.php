@@ -1,136 +1,86 @@
 <!doctype html>
+<html lang="en" class="layout-menu-fixed layout-compact bg-light text-dark" data-assets-path="{{ asset('assets/') }}" data-template="vertical-menu-template-free">
 
-<html
-  lang="en"
-  class="layout-menu-fixed layout-compact"
-  data-assets-path="{{ asset('assets/') }}"
-  data-template="vertical-menu-template-free">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <meta name="robots" content="noindex, nofollow" />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>🎉 Dashboard Homestay - Stylish Analytics</title>
+  <meta name="description" content="Homestay dashboard dengan UI modern dan navigasi interaktif" />
 
-    <title>Demo: Dashboard - Analytics | Materio - Bootstrap Dashboard FREE</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" />
 
-    <meta name="description" content="" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" />
+  <!-- Iconify & Core CSS -->
+  <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/iconify-icons.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/vendor/libs/node-waves/node-waves.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/vendor/css/core.css') }}" class="template-customizer-core-css" />
+  <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&ampdisplay=swap"
-      rel="stylesheet" />
+  <!-- Plugins -->
+  <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}" />
 
-    <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/iconify-icons.css') }}" />
+  <!-- Custom Helper & Config -->
+  <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
+  <script src="{{ asset('assets/js/config.js') }}"></script>
+</head>
 
-    <!-- Core CSS -->
-    <!-- build:css assets/vendor/css/theme.css -->
+<body class="bg-white">
+  <!-- Layout Wrapper -->
+  <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      @include('layouts.sidebar')
 
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/node-waves/node-waves.css') }}" />
+      <!-- Main Content -->
+      <div class="layout-page">
+        @include('layouts.navbar')
 
-    <link rel="stylesheet" href="{{ asset('assets/vendor/css/core.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
-
-    <!-- Vendors CSS -->
-
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
-
-    <!-- endbuild -->
-
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}" />
-
-    <!-- Page CSS -->
-
-    <!-- Helpers -->
-    <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-
-    <!--? Config: Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file. -->
-
-    <script src="{{ asset('assets/js/config.js') }}"></script>
-  </head>
-
-  <body>
-    <!-- Layout wrapper -->
-    <div class="layout-wrapper layout-content-navbar">
-      <div class="layout-container">
-        <!-- Menu -->
-        @include('layouts.sidebar')
-        <!-- / Menu -->
-
-        <!-- Layout container -->
-        <div class="layout-page">
-          <!-- Navbar -->
-
-         @include('layouts.navbar')
-          <!-- / Navbar -->
-
-          <!-- Content wrapper -->
-          <div class="content-wrapper">
-            <!-- Content -->
-            <div class="container-xxl flex-grow-1 container-p-y">
-              @section('content')
-              @show
+        <div class="content-wrapper">
+          <div class="container-xxl flex-grow-1 container-p-y">
+            @section('content')
+            <!-- 👇 Tambahkan konten dashboard menarik di bawah sini -->
+            <div class="row">
+              <div class="col-md-12">
+                <div class="alert alert-success d-flex align-items-center" role="alert">
+                  <span class="me-2">👋</span>
+                  <div>Selamat datang di Dashboard Homestay, {{ Auth::user()->name ?? 'Admin' }}!</div>
+                </div>
+              </div>
             </div>
-            <!-- / Content -->
-
-            <!-- Footer -->
-            <footer class="content-footer footer bg-footer-theme">
-             @include('layouts.footer')
-            </footer>
-            <!-- / Footer -->
-
-            <div class="content-backdrop fade"></div>
+            @show
           </div>
-          <!-- Content wrapper -->
+
+          <!-- Footer -->
+          <footer class="content-footer footer bg-footer-theme">
+            @include('layouts.footer')
+          </footer>
+
+          <div class="content-backdrop fade"></div>
         </div>
-        <!-- / Layout page -->
       </div>
-
-      <!-- Overlay -->
-      <div class="layout-overlay layout-menu-toggle"></div>
     </div>
-    <!-- / Layout wrapper -->
 
-    {{-- <div class="buy-now">
-      <a
-        href="https://themeselection.com/item/materio-dashboard-pro-bootstrap/"
-        target="_blank"
-        class="btn btn-danger btn-buy-now"
-        >Upgrade to Pro</a
-      >
-    </div> --}}
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
+  </div>
 
-    <!-- Core JS -->
+  <!-- Scripts -->
+  <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
+  <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
+  <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
+  <script src="{{ asset('assets/vendor/libs/node-waves/node-waves.js') }}"></script>
+  <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+  <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
+  <script src="{{ asset('assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
+  <script src="{{ asset('assets/js/main.js') }}"></script>
+  <script src="{{ asset('assets/js/dashboards-analytics.js') }}"></script>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
 
-    <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
-
-    <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
-    <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/node-waves/node-waves.js') }}"></script>
-
-    <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
-
-    <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
-
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-    <script src="{{ asset('assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
-
-    <!-- Main JS -->
-
-    <script src="{{ asset('assets/js/main.js') }}"></script>
-
-    <!-- Page JS -->
-    <script src="{{ asset('assets/js/dashboards-analytics.js') }}"></script>
-
-    <!-- Place this tag before closing body tag for github widget button. -->
-    <script async="async" defer="defer" src="https://buttons.github.io/buttons.js"></script>
-  </body>
 </html>
