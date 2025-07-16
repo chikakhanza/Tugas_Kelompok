@@ -52,4 +52,4 @@ class LaporanController extends Controller
         });
         return view('laporan.homestay', ['homestays' => $data]);
     }
-} 
+}
