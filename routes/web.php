@@ -45,3 +45,4 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/laporan/pendapatan', [LaporanController::class, 'pendapatanReport'])->name('laporan.pendapatan');
     Route::get('/laporan/homestay', [LaporanController::class, 'homestayReport'])->name('laporan.homestay');
 });
+
