@@ -1,105 +1,93 @@
+<nav
+  id="layout-navbar"
+  class="layout-navbar container-xxl navbar navbar-expand-xl align-items-center shadow-sm bg-gradient rounded-bottom py-2 px-4 mb-4"
+  style="background: linear-gradient(to right, #fce7f3, #fbcfe8);"
+>
+  <!-- Toggle Sidebar (Mobile) -->
+  <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 d-xl-none">
+    <a class="nav-item nav-link px-2" href="javascript:void(0)">
+      <span class="text-xl">📋</span>
+    </a>
+  </div>
 
-          <nav
-            class="layout-navbar container-xxl navbar-detached navbar navbar-expand-xl align-items-center bg-navbar-theme"
-            id="layout-navbar">
-            <div class="layout-menu-toggle navbar-nav align-items-xl-center me-4 me-xl-0 d-xl-none">
-              <a class="nav-item nav-link px-0 me-xl-6" href="javascript:void(0)">
-                <i class="icon-base ri ri-menu-line icon-md"></i>
-              </a>
-            </div>
+  <!-- Search Bar -->
+  <div class="navbar-nav align-items-center me-auto">
+    <div class="nav-item d-flex align-items-center">
+      <span class="text-xl me-2">🔍</span>
+      <input
+        type="text"
+        class="form-control border-0 shadow-none bg-transparent"
+        placeholder="Cari sesuatu..."
+        aria-label="Search..."
+      />
+    </div>
+  </div>
 
-            <div class="navbar-nav-right d-flex align-items-center justify-content-end" id="navbar-collapse">
-              <!-- Search -->
-              <div class="navbar-nav align-items-center">
-                <div class="nav-item d-flex align-items-center">
-                  <i class="icon-base ri ri-search-line icon-lg lh-0"></i>
-                  <input
-                    type="text"
-                    class="form-control border-0 shadow-none"
-                    placeholder="Search..."
-                    aria-label="Search..." />
-                </div>
-              </div>
-              <!-- /Search -->
+  <!-- Right Navbar -->
+  <ul class="navbar-nav flex-row align-items-center ms-auto">
+    <!-- GitHub Star -->
+    <li class="nav-item me-4 d-none d-md-block">
+      <a
+        href="https://github.com/themeselection/materio-bootstrap-html-admin-template-free"
+        class="btn btn-outline-dark btn-sm rounded-pill shadow-sm"
+      >
+        ⭐ Star
+      </a>
+    </li>
 
-              <ul class="navbar-nav flex-row align-items-center ms-md-auto">
-                <!-- Place this tag where you want the button to render. -->
-                <li class="nav-item lh-1 me-4">
-                  <a
-                    class="github-button"
-                    href="https://github.com/themeselection/materio-bootstrap-html-admin-template-free"
-                    data-icon="octicon-star"
-                    data-size="large"
-                    data-show-count="true"
-                    aria-label="Star themeselection/materio-html-admin-template-free on GitHub"
-                    >Star</a
-                  >
-                </li>
+    <!-- Profile Dropdown -->
+    <li class="nav-item dropdown dropdown-user">
+      <a
+        class="nav-link dropdown-toggle hide-arrow d-flex align-items-center"
+        href="#"
+        data-bs-toggle="dropdown"
+      >
+        <div class="avatar avatar-online me-2">
+          <img
+            src="{{ asset('assets/img/avatars/1.png') }}"
+            alt="User Avatar"
+            class="rounded-circle w-px-40 h-px-40 shadow-sm"
+          />
+        </div>
+        <span class="fw-medium d-none d-md-inline">
+          {{ Auth::user()->name ?? 'User' }} ⬇️
+        </span>
+      </a>
 
-                <!-- User -->
-                <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                  <a
-                    class="nav-link dropdown-toggle hide-arrow p-0"
-                    href="javascript:void(0);"
-                    data-bs-toggle="dropdown">
-                    <div class="avatar avatar-online">
-                      <img src="../assets/img/avatars/1.png" alt="alt" class="rounded-circle" />
-                    </div>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <div class="d-flex">
-                          <div class="flex-shrink-0 me-3">
-                            <div class="avatar avatar-online">
-                              <img src="../assets/img/avatars/1.png" alt="alt" class="w-px-40 h-auto rounded-circle" />
-                            </div>
-                          </div>
-                          <div class="flex-grow-1">
-                            <h6 class="mb-0">John Doe</h6>
-                            <small class="text-body-secondary">Admin</small>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="dropdown-divider my-1"></div>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="icon-base ri ri-user-line icon-md me-3"></i>
-                        <span>My Profile</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="icon-base ri ri-settings-4-line icon-md me-3"></i>
-                        <span>Settings</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <span class="d-flex align-items-center align-middle">
-                          <i class="flex-shrink-0 icon-base ri ri-bank-card-line icon-md me-3"></i>
-                          <span class="flex-grow-1 align-middle ms-1">Billing Plan</span>
-                          <span class="flex-shrink-0 badge rounded-pill bg-danger">4</span>
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="dropdown-divider my-1"></div>
-                    </li>
-                    <li>
-                      <div class="d-grid px-4 pt-2 pb-1">
-                        <a class="btn btn-danger d-flex" href="javascript:void(0);">
-                          <small class="align-middle">Logout</small>
-                          <i class="ri ri-logout-box-r-line ms-2 ri-xs"></i>
-                        </a>
-                      </div>
-                    </li>
-                  </ul>
-                </li>
-                <!--/ User -->
-              </ul>
-            </div>
-          </nav>
+      <ul class="dropdown-menu dropdown-menu-end mt-2 shadow-lg rounded-lg">
+        <li class="dropdown-header text-center">
+          <strong>{{ Auth::user()->name ?? 'User' }}</strong><br />
+          <small class="text-muted">👑 Admin</small>
+        </li>
+        <li><hr class="dropdown-divider" /></li>
+
+        <li>
+          <a class="dropdown-item" href="#">🧑‍💼 Profil Saya</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">⚙️ Pengaturan</a>
+        </li>
+        <li>
+          <a
+            class="dropdown-item d-flex justify-content-between align-items-center"
+            href="#"
+          >
+            💳 Billing
+            <span class="badge bg-danger rounded-pill">4</span>
+          </a>
+        </li>
+        <li><hr class="dropdown-divider" /></li>
+
+        <!-- Logout -->
+        <li>
+          <form method="POST" action="{{ route('logout') }}" class="px-3 py-2">
+            @csrf
+            <button type="submit" class="btn btn-outline-danger w-100">
+              🚪 Keluar
+            </button>
+          </form>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>

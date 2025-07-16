@@ -7,6 +7,7 @@ use App\Models\Homestay;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class BookingController extends Controller
 {
@@ -37,6 +38,11 @@ class BookingController extends Controller
 
         $homestay = Homestay::findOrFail($request->homestay_id);
 
+        // Validasi jumlah kamar tersedia
+        if ($homestay->jumlah_kamar < $request->jumlah_kamar) {
+            return redirect()->back()->withInput()->withErrors(['jumlah_kamar' => 'Jumlah kamar tidak mencukupi!']);
+        }
+
         $checkIn = Carbon::parse($request->check_in);
         $checkOut = Carbon::parse($request->check_out);
         $totalHari = $checkIn->diffInDays($checkOut);
@@ -62,6 +68,10 @@ class BookingController extends Controller
             'total_bayar' => $totalBayar,
             'catatan' => $request->catatan,
         ]);
+        // Kurangi jumlah kamar di homestay
+        $homestay->jumlah_kamar -= $request->jumlah_kamar;
+        $homestay->save();
+        Log::info('Jumlah kamar homestay setelah booking (web): ' . $homestay->jumlah_kamar);
 
         return redirect()->route('bookings.index')->with('success', 'Booking berhasil ditambahkan.');
     }
@@ -126,7 +136,13 @@ class BookingController extends Controller
 
     public function destroy($id)
     {
-        Booking::destroy($id);
+        $booking = Booking::findOrFail($id);
+        $homestay = $booking->homestay;
+        // Kembalikan jumlah kamar ke homestay
+        $homestay->jumlah_kamar += $booking->jumlah_kamar;
+        $homestay->save();
+        Log::info('Jumlah kamar homestay setelah booking dihapus (web): ' . $homestay->jumlah_kamar);
+        $booking->delete();
         return redirect()->route('bookings.index')->with('success', 'Booking berhasil dihapus.');
     }
 }

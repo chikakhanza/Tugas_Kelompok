@@ -14,4 +14,9 @@ class Homestay extends Model
         'jumlah_kamar',
         
     ];
+
+    public function bookings()
+    {
+        return $this->hasMany(\App\Models\Booking::class);
+    }
 }
